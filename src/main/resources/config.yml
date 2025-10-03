@@ -4,10 +4,6 @@ ban-enable: true
 # 你的伺服器代號（例如 catbud.net）
 server-id: example.com
 
-# 當玩家被踢出時顯示的訊息
-#   使用 https://docs.advntr.dev/minimessage/format.html
-kick-message: <lang:multiplayer.disconnect.banned>
-
 # API 調用網址
 #   %server% 將會替換成你的 server 配置。
 #   %player% 則是在登入時檢查玩家是否被你選擇加入封鎖。
@@ -16,4 +12,23 @@ api-url: https://mcban.tw/api/query?server=%server%&player=%player%
 # 如果 API 訪問出現錯誤
 #   true = 拒絕所有登入，直到 API 恢復為止。
 #   false = 忽略檢查。
-exception-denied: true
+exception-denied: false
+
+# 如果玩家檢測到被封鎖的處理方式。
+#   REFUSED_LOGIN = 拒絕玩家登入
+#   EXECUTE_COMMAND = 執行配套指令
+process-type: REFUSED_LOGIN
+
+# ※ 僅 process-type: REFUSED_LOGIN 時有效
+# 當玩家被踢出時顯示的訊息
+#   使用 https://docs.advntr.dev/minimessage/format.html
+kick-message: <lang:multiplayer.disconnect.banned>
+
+# ※ 僅 process-type: EXECUTE_COMMAND 時有效
+# 當玩家在封鎖清單內時按照順序執行指令
+#   使用控制台權限
+#   %uuid% = 玩家的 UUID
+#   %name% = 玩家的 ID
+run-commands:
+  - ban %uuid%
+  - say %name% 已被「麥塊伺服玩家封禁共享名單」封鎖

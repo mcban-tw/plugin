@@ -1,5 +1,7 @@
 package mcban.tw.plugin.code;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -26,8 +28,20 @@ public final class PluginEvent implements Listener {
             return;
         }
         try {
-            if (main.isBanned(event.getPlayer())) {
-                event.disallow(PlayerLoginEvent.Result.KICK_BANNED, main.impConfig().kickMessage);
+            Player player = event.getPlayer();
+            if (main.isBanned(player)) {
+                switch (main.impConfig().processType) {
+                    case REFUSED_LOGIN -> event.disallow(PlayerLoginEvent.Result.KICK_BANNED, main.impConfig().kickMessage);
+                    case EXECUTE_COMMAND -> {
+                        for (String command : main.impConfig().runCommands) {
+                            Bukkit.dispatchCommand(
+                                    Bukkit.getConsoleSender(),
+                                    command.replace("%uuid%", player.getUniqueId().toString())
+                                            .replace("%name%", player.getName())
+                            );
+                        }
+                    }
+                }
             }
         } catch (IOException ex) {
             main.getLogger().warning("Failed to check ban status: " + ex.getMessage());
