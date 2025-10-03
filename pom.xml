@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>mcban.tw</groupId>
-    <artifactId>plugin</artifactId>
+    <artifactId>McbanTw</artifactId>
     <version>1.0a</version>
 
     <properties>
@@ -31,16 +31,6 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
-                <excludes>
-                    <exclude>temp/*</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>false</filtering>
-                <includes>
-                    <include>temp/*</include>
-                </includes>
             </resource>
         </resources>
     </build>
