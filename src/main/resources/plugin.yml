@@ -1,0 +1,10 @@
+name: McbanTw
+version: ${project.version}
+main: mcban.tw.plugin.code.PluginMain
+api-version: 1.19
+authors: [catbud_net]
+folia-supported: true
+commands:
+  reload:
+    usage: 'op'
+    description: '重新讀取「麥塊伺服玩家封禁共享名單」配置'
