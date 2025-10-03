@@ -32,9 +32,9 @@ public final class PluginMain extends JavaPlugin implements McbanTw {
         saveDefaultConfig();
         reloadConfig();
         PluginCommand command;
-        command = Bukkit.getPluginCommand("reload");
+        command = Bukkit.getPluginCommand("mcbantw_reload");
         if (command == null) {
-            throw new RuntimeException("No registration command 'reload' in plugin.yml");
+            throw new RuntimeException("No registration command 'mcbantw_reload' in plugin.yml");
         }
         command.setExecutor(new CmdExecutor(this));
         command.setTabCompleter(new CmdCompleter());

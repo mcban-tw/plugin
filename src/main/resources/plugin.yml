@@ -5,6 +5,6 @@ api-version: 1.19
 authors: [catbud_net]
 folia-supported: true
 commands:
-  reload:
+  mcbantw_reload:
     usage: 'op'
     description: '重新讀取「麥塊伺服玩家封禁共享名單」配置'
